@@ -1,0 +1,17 @@
+{
+    "name": "editable-div",
+    "version": "0.0.1",
+    "main": "editable-div.js",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "jquery": ">= 0.0.0",
+        "angular": ">= 0.0.0"
+    },
+    "private": true
+}

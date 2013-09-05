@@ -1,0 +1,8 @@
+#outside {
+    background: #e3a1a1;
+}
+
+body,input,div{
+    font-size: 16pt;
+    font-family: Arial;
+}

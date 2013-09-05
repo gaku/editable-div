@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en-US" ng-app="myapp">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <!-- dependencies -->
+    <script src="bower_components/jquery/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <!-- module -->
+    <script src="editable-div.js"></script>
+    <link rel="stylesheet" href="editable-div.css">
+    <!-- test program -->
+    <link rel="stylesheet" href="test_editablediv.css">
+    <script src="demo_app.js"></script>
+</head>
+<body ng-controller="myAppController" id="outside">
+OUTSIDE of the directive: data = {{data}}
+
+<div editable-div ng-model="data" callback="callbackFn">
+    {{data}}
+</div>
+
+</body>
+</html>
