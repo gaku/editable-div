@@ -8,3 +8,6 @@
 .editable-div-display {
     border: 1px solid rgba(0,0,0,0);
 }
+.editablediv-placeholder {
+    color: #888888;
+}

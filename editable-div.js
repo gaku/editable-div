@@ -9,7 +9,8 @@ module.directive('editableDiv', function() {
         require: '^ngModel',
         scope: {
             ngModel:'=ngModel',
-            callback: '='
+            callback: '=',
+            placeHolder: '@'
         },
         template: '<input ng-model="ngModel" class="editable-div editable-div-input"></input><div class="editable-div editable-div-display"></div>',
         link: function($scope, $element, $attr) {
@@ -32,7 +33,9 @@ module.directive('editableDiv', function() {
                 node.setSelectionRange(offset,offset);
             });
             $scope.input.bind('blur', function() {
-                $scope.callback();
+                if ($scope.callback) {
+                    $scope.callback();
+                }
                 $scope.div.css('display', 'block');
                 $scope.input.css('display', 'none');
                 $scope.refresh();
@@ -58,9 +61,15 @@ module.directive('editableDiv', function() {
 
             $scope.refresh = function() {
                 var displayHtml;
-                if ($scope.ngModel == '') {
-                    displayHtml = '&nbsp;'
+                if ($scope.ngModel == '' || $scope.ngModel == undefined) {
+                    $scope.div.addClass('editablediv-placeholder');
+                    if ($scope.placeHolder) {
+                        displayHtml = $scope.placeHolder;
+                    } else {
+                        displayHtml = '&nbsp;'
+                    }
                 } else {
+                    $scope.div.removeClass('editablediv-placeholder');
                     displayHtml = $scope.ngModel;
                 }
                 $scope.div.html(displayHtml);
