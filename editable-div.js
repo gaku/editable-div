@@ -42,10 +42,10 @@ module.directive('editableDiv', function() {
             });
 
             $scope.div.bind('mouseover', function() {
-                $element.css('background-color', highlightColor);
+                $scope.div.css('background-color', highlightColor);
             });
             $scope.div.bind('mouseout', function() {
-                $element.css('background-color', $scope.originalDivBackground);
+                $scope.div.css('background-color', '');  // Removing CSS from DIV
             });
             $element.bind('keydown', function(event) {
                 console.log(event.which);
