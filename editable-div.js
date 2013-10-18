@@ -68,7 +68,7 @@ module.directive('editableDiv', function() {
 
             $scope.refresh = function() {
                 var displayHtml;
-                if ($scope.ngModel == '' || $scope.ngModel == undefined) {
+                if (!$scope.readonly && ($scope.ngModel == '' || $scope.ngModel == undefined)) {
                     $scope.div.addClass('editablediv-placeholder');
                     if ($scope.placeHolder) {
                         displayHtml = $scope.placeHolder;
