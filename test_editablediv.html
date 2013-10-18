@@ -16,8 +16,11 @@
 </head>
 <body ng-controller="myAppController" id="outside">
 OUTSIDE of the directive: data = {{data}}
+<p>
+Readonly <input type="checkbox" ng-model="readonly">
+</p>
 
-<div editable-div ng-model="data" callback="callbackFn" place-holder="Click here to edit">
+<div editable-div ng-model="data" callback="callbackFn" place-holder="Click here to edit" readonly="readonly">
     {{data}}
 </div>
 

@@ -10,6 +10,7 @@ module.directive('editableDiv', function() {
         scope: {
             ngModel:'=ngModel',
             callback: '=',
+            readonly: '=',
             placeHolder: '@'
         },
         template: '<input ng-model="ngModel" class="editable-div editable-div-input"></input><div class="editable-div editable-div-display"></div>',
@@ -20,6 +21,9 @@ module.directive('editableDiv', function() {
 
             var originalValue;
             $scope.div.bind('click', function() {
+                if ($scope.readonly) {
+                    return;
+                }
                 originalValue = $scope.ngModel;
                 // get the cursor offset from display DIV
                 var sel = window.getSelection();
@@ -42,6 +46,9 @@ module.directive('editableDiv', function() {
             });
 
             $scope.div.bind('mouseover', function() {
+                if ($scope.readonly) {
+                    return;
+                }
                 $scope.div.css('background-color', highlightColor);
             });
             $scope.div.bind('mouseout', function() {
