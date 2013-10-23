@@ -10,6 +10,7 @@ module.directive('editableDiv', function() {
         scope: {
             ngModel:'=ngModel',
             callback: '=',
+            callbackParameter: '=',
             readonly: '=',
             placeHolder: '@'
         },
@@ -38,7 +39,11 @@ module.directive('editableDiv', function() {
             });
             $scope.input.bind('blur', function() {
                 if ($scope.callback) {
-                    $scope.callback();
+                    if ($scope.callbackParameter != undefined) {
+                        $scope.callback($scope.callbackParameter);
+                    } else {
+                        $scope.callback();
+                    }
                 }
                 $scope.div.css('display', 'block');
                 $scope.input.css('display', 'none');
