@@ -31,7 +31,7 @@ module.directive('editableDiv', function() {
                 var offset = sel.focusOffset;
                 // hide DIV and show INPUT
                 $scope.div.css('display', 'none');
-                $scope.input.css('display','block');
+                $scope.input.css('display','inline-block');
                 $scope.input.focus();
                 // Move cursor to the same offset
                 var node = $scope.input.get(0);
