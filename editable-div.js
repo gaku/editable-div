@@ -83,7 +83,7 @@ module.directive('editableDiv', function() {
                 } else {
                     $scope.div.removeClass('editablediv-placeholder');
                     if ($scope.linkCallback) {
-                        displayHtml = '<a class="generated-link" href="' + $scope.linkCallback($scope.ngModel) + '">' + $scope.ngModel + '</a>'
+                        displayHtml = '<a class="generated-link" target="_blank" href="' + $scope.linkCallback($scope.ngModel) + '">' + $scope.ngModel + '</a>'
                     } else {
                         displayHtml = $scope.ngModel;
                     }
