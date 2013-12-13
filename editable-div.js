@@ -11,6 +11,7 @@ module.directive('editableDiv', function() {
             ngModel:'=ngModel',
             callback: '=',
             callbackParameter: '=',
+            linkCallback: '=',
             readonly: '=',
             placeHolder: '@'
         },
@@ -60,7 +61,6 @@ module.directive('editableDiv', function() {
                 $scope.div.css('background-color', '');  // Removing CSS from DIV
             });
             $element.bind('keydown', function(event) {
-                console.log(event.which);
                 if (event.which == 13) {
                     event.target.blur();
                 } else if (event.which == 27) {
@@ -72,7 +72,7 @@ module.directive('editableDiv', function() {
             });
 
             $scope.refresh = function() {
-                var displayHtml;
+                var linkify = false;
                 if (!$scope.readonly && ($scope.ngModel == '' || $scope.ngModel == undefined)) {
                     $scope.div.addClass('editablediv-placeholder');
                     if ($scope.placeHolder) {
@@ -82,9 +82,18 @@ module.directive('editableDiv', function() {
                     }
                 } else {
                     $scope.div.removeClass('editablediv-placeholder');
-                    displayHtml = $scope.ngModel;
+                    if ($scope.linkCallback) {
+                        displayHtml = '<a class="generated-link" href="' + $scope.linkCallback($scope.ngModel) + '">' + $scope.ngModel + '</a>'
+                    } else {
+                        displayHtml = $scope.ngModel;
+                    }
                 }
                 $scope.div.html(displayHtml);
+                if ($scope.linkCallback) {
+                    $scope.div.find("a.generated-link").click(function(e) {
+                        e.stopPropagation();
+                    });
+                }
             }
 
             $scope.$watch('ngModel', $scope.refresh);
@@ -92,22 +101,6 @@ module.directive('editableDiv', function() {
             // initialize
             $scope.input.css('display', 'none');
             $scope.input.css('background', highlightColor);
-        },
-        controller: function($scope) {
-            /*
-             $scope.$watch('ngModel', function() {
-             console.log("update");
-             $scope.div.text($scope.ngModel)
-             console.log("div value:" + $scope.div.html());
-
-             console.log("div: " + $scope.div.css('height'));
-             console.log("textarea: " + $scope.textarea.css('height'));
-
-             //
-             $scope.textarea.css('height', $scope.div.css('height'));
-
-             });
-             */
         }
     }
 });

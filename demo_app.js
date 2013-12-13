@@ -6,4 +6,8 @@ app.controller('myAppController', function($scope) {
     $scope.callbackFn = function() {
         console.log("callback called!");
     }
+    $scope.linkCallbackFn = function(value) {
+        console.log("value:" + value);
+        return "http://maps.google.com?q=" + encodeURIComponent(value)
+    }
 });
